@@ -3,11 +3,11 @@
 using namespace std;
 
 bool isPrime(int num) {
-    if (num <= 1) return false;
-    if (num <= 3) return true;
-    if (num % 2 == 0 || num % 3 == 0) return false;
-    int sqrtNum = static_cast<int>(sqrt(num));
-    for (int i = 5; i <= sqrtNum; i += 6) {
+    if (num <= 1) return false;    // Numbers <= 1 are not prime
+    if (num <= 3) return true;     // 2 and 3 are prime
+    if (num % 2 == 0 || num % 3 == 0) return false;  // Eliminate multiples of 2 and 3
+    
+    for (int i = 5; i * i <= num; i += 6) {  // Check divisibility by numbers of form 6k ± 1
         if (num % i == 0 || num % (i + 2) == 0) {
             return false;
         }
@@ -20,9 +20,7 @@ int main() {
     cout << "Enter a number: ";
     cin >> number;
 
-    bool result = isPrime(number);
-
-    if (result) {
+    if (isPrime(number)) {
         cout << "True" << endl;
     } else {
         cout << "False" << endl;
